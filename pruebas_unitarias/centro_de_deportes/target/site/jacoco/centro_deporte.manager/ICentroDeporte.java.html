@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ICentroDeporte.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Verificaciones</a> &gt; <a href="index.source.html" class="el_package">centro_deporte.manager</a> &gt; <span class="el_source">ICentroDeporte.java</span></div><h1>ICentroDeporte.java</h1><pre class="source lang-java linenums">package centro_deporte.manager;
+
+import java.util.List;
+
+/**
+ * Interfaz que define las operaciones básicas para gestionar los deportes en un centro deportivo.
+ */
+public interface ICentroDeporte {
+    static ICentroDeporte create() {
+<span class="fc" id="L10">        return new CentroDeporte();</span>
+    }
+
+    /**
+     * Obtiene una lista de nombres de todos los deportes disponibles.
+     *
+     * @return Lista de nombres de deportes.
+     */
+    List&lt;String&gt; obtenerDeportes();
+
+    /**
+     * Obtiene una lista de nombres de deportes que comienzan con la letra especificada.
+     *
+     * @param letra Letra inicial para filtrar los deportes.
+     * @return Lista de nombres de deportes que comienzan con la letra dada.
+     */
+    List&lt;String&gt; obtenerDeportes(String letra);
+
+    /**
+     * Crea un nuevo deporte y lo agrega al centro deportivo.
+     *
+     * @param nombreDeporte El nombre del nuevo deporte a crear.
+     */
+    void crearDeporte(String nombreDeporte);
+
+    /**
+     * Modifica el nombre de un deporte existente en el centro deportivo.
+     *
+     * @param nombreDeporte El nombre actual del deporte a modificar.
+     * @param nuevoNombre   El nuevo nombre que se asignará al deporte.
+     */
+    void modificarDeporte(String nombreDeporte, String nuevoNombre);
+
+    /**
+     * Elimina un deporte del centro deportivo.
+     *
+     * @param nombreDeporte El nombre del deporte a eliminar.
+     */
+    void eliminarDeporte(String nombreDeporte);
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

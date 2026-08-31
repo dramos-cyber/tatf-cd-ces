@@ -1,0 +1,4 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Verificaciones,centro_deporte.enums,Deportes,0,161,0,0,0,26,0,3,0,3
+Verificaciones,centro_deporte.manager,ICentroDeporte,0,4,0,0,0,1,0,1,0,1
+Verificaciones,centro_deporte.manager,CentroDeporte,0,103,0,10,0,23,0,11,0,6

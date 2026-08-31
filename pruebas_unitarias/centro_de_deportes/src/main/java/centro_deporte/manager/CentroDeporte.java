@@ -29,7 +29,7 @@ public class CentroDeporte implements ICentroDeporte {
 
         for (String deporte : listaDeportes)
             if (deporte.startsWith(letra))
-                return Collections.emptyList();
+                retorno.add (deporte);
 
         return retorno;
     }
@@ -49,11 +49,11 @@ public class CentroDeporte implements ICentroDeporte {
             else
                 nuevaListaDeportes.add(deporte);
 
-//        listaDeportes = nuevaListaDeportes;
+                listaDeportes = nuevaListaDeportes;
     }
 
     @Override
     public void eliminarDeporte(String nombreDeporte) {
-        listaDeportes.remove(nombreDeporte.toUpperCase());
+        listaDeportes.remove(nombreDeporte);
     }
 }

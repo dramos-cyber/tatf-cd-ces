@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CentroDeDeporteTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">centro_deporte</a> &gt; <span class="el_source">CentroDeDeporteTest.java</span></div><h1>CentroDeDeporteTest.java</h1><pre class="source lang-java linenums">
+package centro_deporte;
+
+import centro_deporte.manager.CentroDeporte;
+import centro_deporte.manager.ICentroDeporte;
+import org.junit.jupiter.api.*;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+<span class="fc" id="L12">class CentroDeporteTest {</span>
+
+    private ICentroDeporte centroDeporte;
+
+    @BeforeAll
+    static void iniciarPruebas() {
+<span class="fc" id="L18">        System.out.println(&quot;INICIO DE LAS PRUEBAS&quot;);</span>
+<span class="fc" id="L19">    }</span>
+
+    @BeforeEach
+    void prepararPrueba() {
+<span class="fc" id="L23">        centroDeporte = ICentroDeporte.create();</span>
+<span class="fc" id="L24">    }</span>
+
+    @Test
+    void obtenerDeportesTest() {
+
+<span class="fc" id="L29">        List&lt;String&gt; deportes = centroDeporte.obtenerDeportes();</span>
+
+<span class="fc" id="L31">        assertThat(deportes)</span>
+<span class="fc" id="L32">                .isNotNull()</span>
+<span class="fc" id="L33">                .isNotEmpty();</span>
+<span class="fc" id="L34">    }</span>
+
+    @Test
+    void obtenerDeportesPorLetraTest() {
+
+<span class="fc" id="L39">        List&lt;String&gt; todosLosDeportes = centroDeporte.obtenerDeportes();</span>
+
+<span class="fc" id="L41">        String deporte = todosLosDeportes.get(0);</span>
+<span class="fc" id="L42">        String letra = deporte.substring(0, 1);</span>
+
+<span class="fc" id="L44">        List&lt;String&gt; resultado = centroDeporte.obtenerDeportes(letra);</span>
+
+<span class="fc" id="L46">        assertThat(resultado)</span>
+<span class="fc" id="L47">                .isNotEmpty();</span>
+
+<span class="fc" id="L49">        assertThat(resultado)</span>
+<span class="fc" id="L50">                .allMatch(nombre -&gt; nombre.startsWith(letra));</span>
+<span class="fc" id="L51">    }</span>
+
+    @Test
+    void crearDeporteTest() {
+
+<span class="fc" id="L56">        String nuevoDeporte = &quot;Padel&quot;;</span>
+
+<span class="fc" id="L58">        centroDeporte.crearDeporte(nuevoDeporte);</span>
+
+<span class="fc" id="L60">        List&lt;String&gt; deportes = centroDeporte.obtenerDeportes();</span>
+
+<span class="fc" id="L62">        assertThat(deportes)</span>
+<span class="fc" id="L63">                .contains(nuevoDeporte + &quot;[DEPORTE]&quot;);</span>
+<span class="fc" id="L64">    }</span>
+
+    @Test
+    void modificarDeporteTest() {
+
+<span class="fc" id="L69">        List&lt;String&gt; deportesIniciales = centroDeporte.obtenerDeportes();</span>
+
+<span class="fc" id="L71">        String deporteOriginal = deportesIniciales.get(0);</span>
+<span class="fc" id="L72">        String nuevoNombre = &quot;NuevoDeporte&quot;;</span>
+
+<span class="fc" id="L74">        centroDeporte.modificarDeporte(deporteOriginal, nuevoNombre);</span>
+
+<span class="fc" id="L76">        List&lt;String&gt; deportesFinales = centroDeporte.obtenerDeportes();</span>
+
+<span class="fc" id="L78">        assertThat(deportesFinales)</span>
+<span class="fc" id="L79">                .contains(nuevoNombre);</span>
+
+<span class="fc" id="L81">        assertThat(deportesFinales)</span>
+<span class="fc" id="L82">                .doesNotContain(deporteOriginal);</span>
+<span class="fc" id="L83">    }</span>
+
+    @Test
+    void eliminarDeporteTest() {
+
+<span class="fc" id="L88">        List&lt;String&gt; deportesIniciales = centroDeporte.obtenerDeportes();</span>
+
+<span class="fc" id="L90">        String deporte = deportesIniciales.get(0);</span>
+
+<span class="fc" id="L92">        centroDeporte.eliminarDeporte(deporte);</span>
+
+<span class="fc" id="L94">        List&lt;String&gt; deportesFinales = centroDeporte.obtenerDeportes();</span>
+
+<span class="fc" id="L96">        assertThat(deportesFinales)</span>
+<span class="fc" id="L97">                .doesNotContain(deporte);</span>
+<span class="fc" id="L98">    }</span>
+
+
+    @AfterEach
+    void finalizarPrueba() {
+<span class="fc" id="L103">        centroDeporte = null;</span>
+<span class="fc" id="L104">    }</span>
+
+    @AfterAll
+    static void finalizarPruebas() {
+<span class="fc" id="L108">        System.out.println(&quot;FIN DE LAS PRUEBAS&quot;);</span>
+<span class="fc" id="L109">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>
