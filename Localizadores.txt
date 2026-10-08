@@ -1,0 +1,27 @@
+Título “Start Bootstrap”
+CSS: .masthead-heading
+XPath: //h1[normalize-space()='Start Bootstrap']
+
+Subtítulo “Graphic Artist - Web Designer - Illustrator”
+CSS: .masthead-subheading
+XPath: //p[normalize-space()='Graphic Artist - Web Designer - Illustrator']
+
+Texto descriptivo de About
+CSS: #about .col-lg-4.ms-auto
+XPath: //p[contains(normalize-space(.),'Freelancer is a free bootstrap theme')]/parent::div
+
+Ubicación del pie de página
+CSS: footer .col-lg-4.mb-5.mb-lg-0
+XPath: //p[contains(normalize-space(.),'2215 John Daniel Drive')]/parent::div
+
+Botón de LinkedIn
+CSS: a:has(.fa-linkedin-in)
+XPath: //a[.//*[contains(@class,'fa-linkedin-in')]]
+
+Botón “Free Download!”
+CSS: #about a.btn-outline-light
+XPath: //a[contains(normalize-space(.),'Free Download')]
+
+Imagen de la cabaña en Portfolio
+CSS: #itemsPortafolio img[src='assets/img/portfolio/cabin.png']
+XPath: //*[@id='itemsPortafolio']//img[@src='assets/img/portfolio/cabin.png']
