@@ -17,6 +17,9 @@ public class Find {
     private static final int DEFAUTL_DELAY_SECONDS = new ConfigReader("config.properties")
             .asInt("find.defautl_delay_seconds");
 
+    private static final int LIST_DELAY_SECONDS = new ConfigReader("config.properties")
+            .asInt("find.list_delay_seconds");
+
     private final DriverManagerSingleton instance;
     private final String highlightScript = ResourceLoader.loadAsString("js/highlight.js");
     private final boolean debugging;
@@ -62,7 +65,7 @@ public class Find {
         for (WebElement webElement : webElements) {
             if (this.debugging) {
                 new Interaction(this.instance).javaScriptExecutor(highlightScript, webElement);
-                new Wait(1).sleep();
+                new Wait(LIST_DELAY_SECONDS).sleep();
             }
 
             elements.add(new Element(this.instance, webElement));

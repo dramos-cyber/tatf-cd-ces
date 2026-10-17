@@ -25,6 +25,8 @@ public class DriverManager {
      */
     protected void setDefaultConfig() {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICITLY_WAIT_DEFAULT_SECONDS));
+        int pageLoadSeconds = new ConfigReader("config.properties").asInt("drivermanager.page_load_timeout_seconds");
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(pageLoadSeconds));
         driver.manage().deleteAllCookies();
     }
 

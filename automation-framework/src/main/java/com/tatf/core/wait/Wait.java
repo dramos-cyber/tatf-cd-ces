@@ -2,6 +2,9 @@ package com.tatf.core.wait;
 
 import com.tatf.core.driver.instance.DriverManagerSingleton;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.ElementClickInterceptedException;
+import java.util.function.BooleanSupplier;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -34,6 +37,16 @@ public class Wait {
      */
     public Wait(int waitSeconds) {
         this.waitSeconds = waitSeconds;
+    }
+
+    public void cssClickable() {
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(locator)));
+    }
+
+    public void until(BooleanSupplier condition) {
+        webDriverWait.ignoring(StaleElementReferenceException.class)
+                .ignoring(ElementClickInterceptedException.class)
+                .until(driver -> condition.getAsBoolean());
     }
 
     /**

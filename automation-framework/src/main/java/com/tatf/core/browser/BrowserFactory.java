@@ -15,26 +15,19 @@ public class BrowserFactory {
     private BrowserFactory() {
     }
 
-    /**
-     * Arma un IBrowser listo para usar, con el driver correspondiente.
-     *
-     */
+
     public static IBrowser getBrowser() {
         DriverType type = resolveDriverType();
         DriverManagerSingleton instance = DriverManagerSingleton.getInstance(type);
         return new BrowserImpl(instance, EXPLICIT_WAIT_DEFAULT_SECONDS, DEBUGGING);
     }
 
-    /**
-     * Lee el browser a usar desde la propiedad del sistema "browser" (CHROME por defecto).
-     */
+
     private static DriverType resolveDriverType() {
         return DriverType.valueOf(DRIVER_TYPE.toUpperCase());
     }
 
-    /**
-     * Cierra el browser actual y libera la instancia del Singleton.
-     */
+
     public static void quitBrowser() {
         DriverType type = resolveDriverType();
         DriverManagerSingleton.getInstance(type).quit();

@@ -16,6 +16,30 @@ public class Interaction {
         this.driver = instance.getDriver();
     }
 
+    public String browserName() {
+        return ((HasCapabilities) driver).getCapabilities().getBrowserName();
+    }
+
+    public String browserVersion() {
+        return ((HasCapabilities) driver).getCapabilities().getBrowserVersion();
+    }
+
+    public String driverVersion() {
+        Capabilities capabilities = ((HasCapabilities) driver).getCapabilities();
+        Object firefoxVersion = capabilities.getCapability("moz:geckodriverVersion");
+        if (firefoxVersion != null) {
+            return firefoxVersion.toString();
+        }
+        Object chromeInfo = capabilities.getCapability("chrome");
+        if (chromeInfo instanceof java.util.Map<?, ?>) {
+            Object version = ((java.util.Map<?, ?>) chromeInfo).get("chromedriverVersion");
+            if (version != null) {
+                return version.toString().split(" ")[0];
+            }
+        }
+        return "No informado por el driver";
+    }
+
     /**
      * Devuelve el título de la página actual.
      */

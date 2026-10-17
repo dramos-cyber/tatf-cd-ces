@@ -49,12 +49,14 @@ public class ConfigReader {
         }
     }
 
-    public boolean asBoolean(String key){
+    public boolean asBoolean(String key) {
         String value = asString(key);
-        try {
-            return Boolean.parseBoolean(value);
-        } catch (NumberFormatException e) {
-            throw new IllegalStateException("'" + key + "' no es un booleano válido: " + value, e);
+        if (value.equalsIgnoreCase("true")) {
+            return true;
         }
+        if (value.equalsIgnoreCase("false")) {
+            return false;
+        }
+        throw new IllegalStateException("'" + key + "' debe ser true o false.");
     }
 }
